@@ -1,0 +1,107 @@
+<div>
+  <!-- Header Bar -->
+  <mat-toolbar color="primary">Capital Balance Projection</mat-toolbar>
+
+  <!-- Input components are added in a grid -->
+  <mat-grid-list cols="3" rowHeight="8:1">
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput type="number" [(ngModel)]="inputObject.age">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Start Balance</mat-label>
+        <span matPrefix>$ &nbsp;</span>
+        <input matInput type="number" [(ngModel)]="inputObject.startBalance">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Salary</mat-label>
+        <span matPrefix>$ &nbsp;</span>
+        <input matInput type="number" [(ngModel)]="inputObject.salary">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Contribution Rate</mat-label>
+        <input matInput type="number" [(ngModel)]="inputObject.contributionRate">
+        <span matSuffix>%</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Inflation Rate</mat-label>
+        <input matInput type="number" [(ngModel)]="inputObject.inflationRate">
+        <span matSuffix>%</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label> Earnings</mat-label>
+        <input matInput type="number" [(ngModel)]="inputObject.earnings">
+        <span matSuffix>%</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label> Fees</mat-label>
+        <input matInput type="number" [(ngModel)]="inputObject.fees">
+        <span matSuffix>%</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Tax</mat-label>
+        <input matInput type="number" [(ngModel)]="inputObject.tax">
+        <span matSuffix>%</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Withdrawal Rate</mat-label>
+        <input matInput type="number" [(ngModel)]="inputObject.withdrawalRate">
+        <span matSuffix>%</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Withdrawal Start Age</mat-label>
+        <input matInput type="number" [(ngModel)]="inputObject.withdrawalAge">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-raised-button color="primary" (click)="getBalanceProjection()">Calculate Capital Balance</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <!-- Show only if output is available -->
+  <div *ngIf="outputObjects.length > 0">
+    <h2> Capital Balance Projection for next 50 years</h2>
+
+    <!-- Tabbed pane for table and the chart -->
+    <mat-tab-group *ngIf="outputObjects.length > 0">
+
+      <mat-tab label="Chart View">
+        <!-- pass the lineChartData and lineChartLabels to chart component -->
+        <app-chart [lineChartData]=lineChartData [lineChartLabels]=lineChartLabels></app-chart>
+      </mat-tab>
+
+      <mat-tab label="Table View">
+        <!-- pass the outputObjects to table component -->
+        <app-table [outputObjects]=outputObjects></app-table>
+      </mat-tab>
+
+    </mat-tab-group>
+  </div>
+</div>
